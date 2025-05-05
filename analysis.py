@@ -314,7 +314,7 @@ class Ui_Analysis(QDialog): # Skill_table_data 오름차순 정리 후 받음
         for k in keys: getattr(self.ui, f"{k}_combo").addItems(self.skill_speed[self.selected_class]['일반스킬'].keys()) # 초기 스킬 콤보 아이템 추가
         for k in ['t','v']: getattr(self.ui, f"{k}_combo").addItems(self.skill_speed[self.selected_class][k].keys())
 
-        for k in keys + ['t','v', 'z', 'x']:  getattr(self.ui, f"dmg_{k}_line").setText(self.skill_damge[k]) # 초기 데미지 값 세팅
+        for k in keys + ['t','v', 'z','z1','z2','z3','x','x1','x2','x3']:  getattr(self.ui, f"dmg_{k}_line").setText(self.skill_damge[k]) # 초기 데미지 값 세팅
 
         for k in keys: # 초기 스킬 콤보 룬 콤보 세팅 저장
             self.skill_setting[k] = [getattr(self.ui, f"{k}_combo").currentText(), getattr(self.ui, f"{k}_rune_combo").currentText()]
@@ -410,8 +410,8 @@ class Ui_Analysis(QDialog): # Skill_table_data 오름차순 정리 후 받음
         if file_path:
             with open(file_path, 'r') as f:
                 data = json.load(f)
-                self.skill_setting = data['Skill']
-                self.skill_damge = data['Damage']
+                self.skill_setting = data['Skill'].copy()
+                self.skill_damge = data['Damage'].copy()
                 self.ui.class_combo.setCurrentText(data['Class'])
                 self.ui.q_combo.setCurrentText(data['Skill']['q'][0])
                 self.ui.w_combo.setCurrentText(data['Skill']['w'][0])
@@ -432,24 +432,24 @@ class Ui_Analysis(QDialog): # Skill_table_data 오름차순 정리 후 받음
                 self.ui.d_rune_combo.setCurrentText(data['Skill']['d'][1])
                 self.ui.f_rune_combo.setCurrentText(data['Skill']['f'][1])
 
-                self.ui.dmg_q_line.setText(self.skill_damge['q'])
-                self.ui.dmg_w_line.setText(self.skill_damge['w'])
-                self.ui.dmg_e_line.setText(self.skill_damge['e'])
-                self.ui.dmg_r_line.setText(self.skill_damge['r'])
-                self.ui.dmg_a_line.setText(self.skill_damge['a'])
-                self.ui.dmg_s_line.setText(self.skill_damge['s'])
-                self.ui.dmg_d_line.setText(self.skill_damge['d'])
-                self.ui.dmg_f_line.setText(self.skill_damge['f'])
-                self.ui.dmg_t_line.setText(self.skill_damge['t'])
-                self.ui.dmg_v_line.setText(self.skill_damge['v'])
-                self.ui.dmg_z_line.setText(self.skill_damge['z'])
-                self.ui.dmg_z1_line.setText(self.skill_damge['z1'])
-                self.ui.dmg_z2_line.setText(self.skill_damge['z2'])
-                self.ui.dmg_z3_line.setText(self.skill_damge['z3'])
-                self.ui.dmg_x_line.setText(self.skill_damge['x'])
-                self.ui.dmg_x1_line.setText(self.skill_damge['x1'])
-                self.ui.dmg_x2_line.setText(self.skill_damge['x2'])
-                self.ui.dmg_x3_line.setText(self.skill_damge['x3'])
+                self.ui.dmg_q_line.setText(data['Damage']['q'])
+                self.ui.dmg_w_line.setText(data['Damage']['w'])
+                self.ui.dmg_e_line.setText(data['Damage']['e'])
+                self.ui.dmg_r_line.setText(data['Damage']['r'])
+                self.ui.dmg_a_line.setText(data['Damage']['a'])
+                self.ui.dmg_s_line.setText(data['Damage']['s'])
+                self.ui.dmg_d_line.setText(data['Damage']['d'])
+                self.ui.dmg_f_line.setText(data['Damage']['f'])
+                self.ui.dmg_t_line.setText(data['Damage']['t'])
+                self.ui.dmg_v_line.setText(data['Damage']['v'])
+                self.ui.dmg_z_line.setText(data['Damage']['z'])
+                self.ui.dmg_z1_line.setText(data['Damage']['z1'])
+                self.ui.dmg_z2_line.setText(data['Damage']['z2'])
+                self.ui.dmg_z3_line.setText(data['Damage']['z3'])
+                self.ui.dmg_x_line.setText(data['Damage']['x'])
+                self.ui.dmg_x1_line.setText(data['Damage']['x1'])
+                self.ui.dmg_x2_line.setText(data['Damage']['x2'])
+                self.ui.dmg_x3_line.setText(data['Damage']['x3'])
 
                 self.ui.speed_line.setText(data['Speed'])
                 self.ui.nak1_combo.setCurrentText(data['Nak'][0])
